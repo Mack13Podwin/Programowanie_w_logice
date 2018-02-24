@@ -25,6 +25,7 @@ over(X,Y):-
 
 higher(X,Y):-
 	over(X,Y);
+	(   above(Y,_); below(Y,_); left(Y,_); right_of(Y, _)),
 	(
 	    \+ above(Y,_),
 	    above(X,_);

@@ -1,10 +1,10 @@
 %rozwiązanie
 jest_matką(X):-
-	matka(X,_Y).
+	matka(X,_).
 jest_ojcem(X):-
-	ojciec(X,_Y).
+	ojciec(X,_).
 jest_synem(X):-
-	rodzic(_Y,X),
+	rodzic(_,X),
 	mężczyzna(X).
 siostra(X,Y):-
 	rodzeństwo(X,Y),
