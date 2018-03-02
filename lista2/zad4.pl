@@ -7,7 +7,7 @@ ma(0, Kto, Co):-
 ma(Kiedy,Kto,Co):-
 	daje(Kiedy,_,Co,Kto).
 ma(Kiedy,Kto,Co):-
-	\+ daje(Kiedy,_,Co,Kto),
+	ma(Kto,_),
 	\+ daje(Kiedy, Kto, Co, _),
 	l(X,Kiedy),
 	ma(X,Kto,Co).
