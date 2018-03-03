@@ -3,8 +3,8 @@ lista(N,X):-
 	numlist(1,N,Y),
 	lista(Y,X,[],[],0).
 
-lista([],_,[],[],0):-
-	true.
+lista([],OUT,[],[],0):-
+	OUT=[].
 lista(IN,OUT,W0,W1,1):-
 	W1\=[],
 	select(Y,W1,Z),
