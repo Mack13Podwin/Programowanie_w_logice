@@ -1,11 +1,17 @@
-permutacja(L1,L2,X):-
-	permutacja(L1,L2,X,0,0).
-permutacja([],_,Sum,Sum,_).
-permutacja([X|L1],L2,Y,Acc,PL):-
-	better_select(X,M,L2,_),
-	NewAcc is Acc+M+PL,
-	NPl is PL+1,
-	permutacja(L1,L2,Y,NewAcc,NPl).
+odd_permutation(L1,L2):-
+	permutacja(L1,L2,M),
+	M mod 2=:=1.
+
+even_permutation(L1,L2):-
+	permutacja(L1,L2,M),
+	M mod 2=:=0.
+
+permutacja(L1,L2,M):-permutacja(L1,L2,M,0).
+permutacja([],[],N,N).
+permutacja(L1,[X|L2],N,Acc):-
+	better_select(X,M,L1,L3),
+	N2 is Acc+M,
+	permutacja(L3,L2,N,N2).
 
 better_select(X,M,L1,L2):-better_select(X,M,0,L1,L2).
 better_select(X,Il,Il,[X|L],L).
