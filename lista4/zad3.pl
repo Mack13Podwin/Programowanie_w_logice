@@ -5,6 +5,9 @@ zapałki(N,(duże(D),średnie(S),małe(M))):-
 	sprawdź_zapałki(N,E3),
 	sprawdź_kwadraty(M,S,D,E3),
 	rysuj(E3).
+zapałki(N,(duże(D),średnie(S))):-zapałki(N,(duże(D),średnie(S),małe(0))).
+zapałki(N,(średnie(S),małe(M))):-zapałki(N,(duże(0),średnie(S),małe(M))).
+zapałki(N,(duże(D),małe(M))):-zapałki(N,(duże(D),średnie(0),małe(M))).
 % Generowanie kwadratów(N-krawędź początkowa,E-zbiór dotychczasowych
 % krawędzi, NE-nowy zbiór krawędzi)
 
@@ -50,7 +53,7 @@ duży_kwadrat([1,2,3,10,11,12,101,104,105,108,109,112]).
 mały_kwadrat(N,_):-(N<1;N>9),!,fail.
 mały_kwadrat(N,Krawędzie):-
 	E1 is N, E2 is N+3,
-	P is floor(N/3),
+	P is floor((N-1)/3),
 	E3 is 100+N+P, E4 is 101+N+P,
 	Krawędzie=[E1,E2,E3,E4].
 
