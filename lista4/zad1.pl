@@ -7,15 +7,13 @@ wyrażenie(Lista, Wyrażenie):-
 	mój_append(L1,L2,Lista),
 	wyrażenie(L1,W1),
 	wyrażenie(L2,W2),
-	(
-		 Wyrażenie=W1+W2;
-		 Wyrażenie=W1-W2;
-		 Wyrażenie=W1*W2;
-		 \+ (
-				  0.0 is W2;
-				  0 is W2
-		     )->Wyrażenie=W1/W2
-	).
+	operacja(Wyrażenie,W1,W2).
+operacja(Wyrażenie,W1,W2):- Wyrażenie=W1+W2.
+operacja(Wyrażenie,W1,W2):- Wyrażenie=W1-W2.
+operacja(Wyrażenie,W1,W2):- Wyrażenie=W1*W2.
+operacja(Wyrażenie,W1,W2):-
+	\+ ((0.0 is W2; 0 is W2))-> Wyrażenie=W1/W2.
+
 
 %append zwracający tylko niepuste listy.
 mój_append(L1,L2,L):-
