@@ -32,6 +32,7 @@ instrukcja(while(WARUNEK,PROGRAM))-->
 	program(PROGRAM),
 	[key(od)].
 
+wyrażenie(WYRAŻENIE)-->składnik(WYRAŻENIE).
 wyrażenie(WYRAŻENIE1 + WYRAŻENIE2)-->
 	składnik(WYRAŻENIE1),
 	[sep('+')],
@@ -40,8 +41,8 @@ wyrażenie(WYRAŻENIE1 - WYRAŻENIE2)-->
 	składnik(WYRAŻENIE1),
 	[sep('-')],
 	wyrażenie(WYRAŻENIE2).
-wyrażenie(WYRAŻENIE)-->składnik(WYRAŻENIE).
 
+składnik(WYRAŻENIE)-->czynnik(WYRAŻENIE).
 składnik(WYRAŻENIE1 * WYRAŻENIE2)-->
 	czynnik(WYRAŻENIE1),
 	[sep('*')],
@@ -54,7 +55,6 @@ składnik(WYRAŻENIE1 mod WYRAŻENIE2)-->
 	czynnik(WYRAŻENIE1),
 	[key('mod')],
 	składnik(WYRAŻENIE2).
-składnik(WYRAŻENIE)-->czynnik(WYRAŻENIE).
 
 czynnik(id(ID))-->[id(ID)].
 czynnik(int(NUM))-->[int(NUM)].
@@ -63,17 +63,17 @@ czynnik(WYRAŻENIE)-->
 	wyrażenie(WYRAŻENIE),
 	[sep(')')].
 
+warunek(WARUNEK)--> koniunkcja(WARUNEK).
 warunek((WARUNEK1 ; WARUNEK2))-->
 	koniunkcja(WARUNEK1),
 	[key(or)],
 	warunek(WARUNEK2).
-warunek(WARUNEK)--> koniunkcja(WARUNEK).
 
+koniunkcja(WARUNEK)-->prosty(WARUNEK).
 koniunkcja((WARUNEK1 , WARUNEK2))-->
 	prosty(WARUNEK1),
 	[key(and)],
 	koniunkcja(WARUNEK2).
-koniunkcja(WARUNEK)-->prosty(WARUNEK).
 
 prosty((WYRAŻENIE1=:=WYRAŻENIE2))-->
 	wyrażenie(WYRAŻENIE1),
