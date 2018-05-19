@@ -14,4 +14,13 @@ split(In,Out1,Out2,2):-
 	      split(NIn,Out1,NOut2,1))),!;
 	Out1=[],Out2=[].
 
+mergesort([],[]).
+mergesort([X],[X]):-freeze(X,true).
+mergesort(In,Out):-
+	freeze(In,(
+	       split(In,Left,Right),
+	       mergesort(Left,S1),
+	       mergesort(Right,S2),
+	       merge(S1,S2,Out))).
+
 

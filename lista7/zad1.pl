@@ -1,5 +1,5 @@
 merge(In1,In2,Out):-
-	freeze(In1,freeze(In2,(
+	freeze(In1,(freeze(In2,(
 			      In1=[H1|T1],
 			      In2=[H2|T2],
 			      (	  H1=<H2->(
@@ -7,7 +7,7 @@ merge(In1,In2,Out):-
 				      merge(T1,In2,NOut));
 			      (
 				      Out=[H2|NOut],
-				      merge(In1,T2,NOut)))
+				      merge(In1,T2,NOut))),!
 			  );
 			 (
 			      In1=[H1|T],
@@ -16,5 +16,9 @@ merge(In1,In2,Out):-
 			 (
 			     In2=[H2|T],
 			     Out=[H2|NOut],
-			     merge(In1,T,NOut)));
+			     merge(In1,T,NOut))),!);
 	       Out=[]),!.
+
+
+
+
