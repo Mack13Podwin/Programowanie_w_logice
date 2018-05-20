@@ -1,13 +1,14 @@
-mymerge(In1,In2,Out):-
-	freeze(In1,(freeze(In2,merge2(In1,In2,Out)))).
+merge(IN1,IN2,OUT):-
+	freeze(IN1,freeze(IN2,merge2(IN1,IN2,OUT))).
 
-merge2([],In2,In2):-!.
-merge2(In1,[],In1):-!.
-merge2(In1,In2,Out):-
-	In1=[H1|T1],In2=[H2|T2],
-	(   (H1=<H2)->Out=[H1|NOut],mymerge(T1,In2,NOut);
-	Out=[H2|NOut],mymerge(In2,T2,NOut)).
-
+merge2([],IN2,IN2):-!.
+merge2(IN1,[],IN1):-!.
+merge2(IN1,IN2,OUT):-
+	IN1=[H1|T1],
+	IN2=[H2|T2],
+	(   H1=<H2->OUT=[H1|NOUT],merge(T1,IN2,NOUT);
+	OUT=[H2|NOUT],merge(IN1,T2,NOUT)
+	).
 
 
 
