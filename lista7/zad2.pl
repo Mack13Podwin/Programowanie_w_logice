@@ -8,7 +8,7 @@ split(IN,OUT1,OUT2,1):-
 split(IN,OUT1,OUT2,2):-
 	freeze(IN,(
 		   IN=[]->OUT1=[],OUT2=[];
-		   IN=[H|T],OUT2=[H|NOUT2],split(T,OUT1,NOUT2,2))).
+		   IN=[H|T],OUT2=[H|NOUT2],split(T,OUT1,NOUT2,1))).
 
 merge_sort(In,Out):-freeze(In, merge_sort2(In,Out)).
 
