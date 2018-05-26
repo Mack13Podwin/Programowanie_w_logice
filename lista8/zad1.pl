@@ -9,5 +9,5 @@ serwery(Plik,Serwery):-
 
 znajdź_serwer(DOM,Serwer):-
 	xpath(DOM,//a(@href),HREF),
-	parse_url(HREF,URL),
+	parse_url(HREF,'http://localhost/',URL),
 	URL=[protocol(http),host(Serwer),_].
