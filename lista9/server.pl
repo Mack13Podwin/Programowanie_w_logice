@@ -29,6 +29,15 @@ handler_queens(_Request) :-
 handler_solution(Request) :-
 	member(method(post),Request),!,
 	http_read_data(Request,Data,[]),
-	Data=[size=Val|_],
-	%atom_number(Val,_)
-	reply_html_page(title('Solution'),[p(Val)]).
+	Data=[size=Val],
+	atom_number(Val,N),
+	queens(N,P),
+	reply_html_page(title('Solution'),[h1('Solution'),table(\row(1,N,P))]).
+
+row(R,N,_)-->{R is N+1},[].
+row(R,N,[H|P])-->html(tr(\cell(1,N,H))),{R1 is R+1},row(R1,N,P).
+
+cell(C,N,_)-->{C is N+1},[].
+cell(C,N,H)-->{H=\=C},html(td(img(src('empty.png')))),{C1 is C+1},cell(C1,N,H).
+cell(H,N,H)-->html(td(img(src('queen.png')))),{C1 is H+1},cell(C1,N,H).
+
